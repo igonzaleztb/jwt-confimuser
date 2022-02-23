@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>Esto es una prueba</div>
+
+  <label for="">email</label>
+  <input type="text" name="email" id="email">
+
+  <label for="">Contraseña</label>
+  <input type="text" name="password" id="password">
+
+  <button id="send">Enviar</button>
+
+
+
+  <script>
+
+    document.getElementById("send").addEventListener("click", function () {
+
+      let pass = document.getElementById("password").value
+      let email = document.getElementById("email").value
+
+      console.log(pass)
+
+      let paginaactual = window.location.pathname;
+
+      const data = { password: pass,
+      email: email };
+
+
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          status: true,
+        })
+      );
+
+     
+      fetch(`${paginaactual}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      alert("Se ha confimado su cuenta de usuario ")
+      location.href = "http://localhost:3000"
+
+
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>
